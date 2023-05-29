@@ -2,25 +2,28 @@
     <div class="quizz__logo">
         <img src="assets/imgs/logo.png" alt="Logo da BuzzFeed">
         <h3>
-            Titulo
+            {{title}}
         </h3>
     </div>
-    <div class="quizz__questions">
+    <div *ngIf=!finished class="quizz__questions">
         <h3>
-            Questão selecionada
+            {{questionSelected.question}}
         </h3>
     </div>
-    <div class="quizz__options">
-        <button class="btn-option">
-            optionName
+    <div *ngIf=!finished class="quizz__options">
+        <button 
+            *ngFor="let option of questionSelected.options" 
+            (click)= "playerChoose(option.alias)"
+            class="btn-option">
+            {{option.name}}
         </button>
     </div>
-    <div class="quizz__results">
+    <div *ngIf=finished class="quizz__results">
         <h1>
             O seu resultado é:
         </h1>
         <p>
-            Resposta Selecionada
+            {{answerSelected}}
         </p>
     </div>
 </div>
